@@ -5,8 +5,7 @@ RSpec.describe Flipper::Api::V1::Actions::Feature do
   describe 'api/v1/feature/:feature' do
     context 'valid route' do
       before do
-        flipper[:buddy_list].enable
-        flipper[:messenger].enable
+        flipper[:buddy_list].enable Flipper::UI::Actor.new('unique_id')
         get '/api/v1/features/buddy_list/'
       end
 
