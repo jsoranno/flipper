@@ -51,8 +51,8 @@ module Flipper
       def call!(env)
         request = Rack::Request.new(env)
         action_class = @action_collection.action_for_request(request)
-
         if action_class.nil?
+          @app.status = 404
           @app.call(env)
         else
           action_class.run(flipper, request)
